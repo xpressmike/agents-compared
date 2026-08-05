@@ -1,0 +1,66 @@
+name: Watch
+
+# The mechanism behind the claim on the front page: this list does not rot because
+# nobody is trusted to remember it. Weekly, the job re-reads every vendor's own source,
+# rewrites news.md from what it finds, and opens an issue when something needs a human.
+#
+# It commits news.md. That is the only file a machine owns here — every page describing a
+# tool's shape is written by a person, on purpose.
+
+on:
+  schedule:
+    - cron: "20 6 * * 1" # Monday morning; a week is the right resolution for this
+  workflow_dispatch:
+
+permissions:
+  contents: write # to commit the regenerated news.md
+  issues: write # to report dead links and fresh announcements
+
+concurrency:
+  group: watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      # No install step: the script is stdlib-only, which is deliberate for a job whose
+      # whole purpose is to still work unattended a year from now.
+      - name: Read every vendor source and check every link
+        run: node scripts/watch.mjs
+
+      - name: Commit news.md if it changed
+        run: |
+          git config user.name "agents-compared watcher"
+          git config user.email "actions@github.com"
+          if git diff --quiet news.md; then
+            echo "no change"
+          else
+            git add news.md
+            git commit -m "chore(news): refresh from vendor sources"
+            git push
+          fi
+
+      - name: Open an issue if anything needs a human
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -s .watch-report.md ] || { echo "nothing to report"; exit 0; }
+          # One open issue at a time. A weekly job that files a fresh issue every week
+          # produces a backlog nobody reads, which is the same as no watcher.
+          existing=$(gh issue list --label staleness --state open --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file .watch-report.md
+            echo "commented on #$existing"
+          else
+            { cat .watch-report.md; printf '\n\nRun: %s\n' "$RUN_URL"; } \
+              | gh issue create --title "Watcher: pages may need a look" --label staleness --body-file -
+          fi

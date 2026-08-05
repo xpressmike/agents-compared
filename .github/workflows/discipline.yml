@@ -1,0 +1,20 @@
+name: Discipline
+
+# The README promises no model versions, no prices, no context sizes, no benchmarks. This
+# runs on every push and pull request so the promise is enforced rather than remembered —
+# including against its own author, which is the only version that holds.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: node scripts/lint-discipline.mjs
