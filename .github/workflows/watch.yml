@@ -47,20 +47,56 @@ jobs:
             git push
           fi
 
-      - name: Open an issue if anything needs a human
+      - name: Open an issue if anything needs a human, and say so in Telegram
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          [ -s .watch-report.md ] || { echo "nothing to report"; exit 0; }
-          # One open issue at a time. A weekly job that files a fresh issue every week
-          # produces a backlog nobody reads, which is the same as no watcher.
-          existing=$(gh issue list --label staleness --state open --limit 1 --json number --jq '.[0].number // empty')
-          if [ -n "$existing" ]; then
-            gh issue comment "$existing" --body-file .watch-report.md
-            echo "commented on #$existing"
+          notify() {
+            # Optional by design: with no bot configured the issue is still the record of
+            # what happened, and this job must not fail over a missing notification.
+            if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then return 0; fi
+            curl -sS -o /dev/null --max-time 20 \
+              "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
+              --data-urlencode "chat_id=$TG_CHAT" \
+              --data-urlencode "text=$1" \
+              --data-urlencode "disable_web_page_preview=true" || true
+          }
+
+          existing=$(gh issue list --label staleness --state open --limit 1 \
+            --json number,createdAt,title --jq '.[0] | select(.) | "\(.number) \(.createdAt)"')
+          number=${existing%% *}
+          created=${existing#* }
+          issue_url="$GITHUB_SERVER_URL/$GH_REPO/issues/$number"
+
+          if [ -s .watch-report.md ]; then
+            if [ -n "$number" ]; then
+              gh issue comment "$number" --body-file .watch-report.md
+              echo "added findings to #$number"
+            else
+              url=$({ cat .watch-report.md; printf '\n\nRun: %s\n' "$RUN_URL"; } \
+                | gh issue create --title "Watcher: pages may need a look" --label staleness --body-file -)
+              echo "opened $url"
+              # Announce only a NEW issue. Repeating the same alert weekly is how a channel
+              # gets muted, and a muted channel is worse than none because it looks covered.
+              notify "$(printf 'agents-compared: the watcher found something\n\n%s\n\n%s' \
+                "$(head -c 400 .watch-report.md)" "$url")"
+            fi
           else
-            { cat .watch-report.md; printf '\n\nRun: %s\n' "$RUN_URL"; } \
-              | gh issue create --title "Watcher: pages may need a look" --label staleness --body-file -
+            echo "nothing new to report"
+          fi
+
+          # Nag about an issue that has been sitting open. Once a week the job runs, so this
+          # is at most one reminder per week — and only after a full week of being ignored,
+          # which is long enough that "I will look later" has already failed once.
+          if [ -n "$number" ]; then
+            age_days=$(( ( $(date +%s) - $(date -d "$created" +%s) ) / 86400 ))
+            echo "issue #$number is $age_days days old"
+            if [ "$age_days" -ge 7 ]; then
+              notify "$(printf 'agents-compared: issue #%s has been open for %s days\n\n%s\n\nClose it or fix what it names — the list is only trustworthy while this stays empty.' \
+                "$number" "$age_days" "$issue_url")"
+            fi
           fi
