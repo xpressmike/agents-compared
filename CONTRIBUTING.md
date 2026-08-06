@@ -25,9 +25,10 @@ wrong:
 - benchmark scores or leaderboard positions
 - "as of <date>" claims about capability
 
-Every one of them is true for a few weeks and then quietly false, and a page that is
-partly false is worse than no page, because it looks maintained. They belong on the
-vendor's own pages, which every tool page links at the bottom.
+Each is true for a few weeks and then quietly false, and a page that is partly false is
+worse than no page, because it still looks maintained. They belong on the vendor's own
+pages, which every tool page links at the bottom — let the people who can actually change
+the number be the ones who publish it.
 
 `news.md` is the single exception, and only because a machine writes it.
 
@@ -43,5 +44,6 @@ experience is not.
 
 ## Style
 
-Plain English. No emoji. No hype. Assume the reader is deciding how to spend the next
-month of their working life and does not need to be sold anything.
+Plain English. No emoji. Dry humour is welcome; hype is not — the test is whether a joke
+would still read well to someone who picked the other tool. Assume the reader is deciding
+how to spend the next month of their working life and does not need to be sold anything.

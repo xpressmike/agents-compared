@@ -19,8 +19,10 @@ forth to rescue a vague request, so the quality of what you get back is mostly d
 before the agent starts. It suits bounded, well-described work: a migration you can state
 precisely, a chore across many files, a fix with a clear reproduction.
 
-That mode is a poor first tool for a beginner, and for a specific reason: the moment-to-
-moment feedback is exactly the part that teaches, and it is exactly the part removed.
+That mode is a poor first tool for a beginner, for a specific and slightly cruel reason:
+the moment-to-moment feedback is the part that teaches, and it is precisely the part hosted
+mode removes. You get the result without the education — like being handed the answers to
+homework you were supposed to learn from.
 
 ## What transfers when you leave
 
@@ -36,10 +38,13 @@ agents.
 Two surfaces means two mental models, and it is not always obvious which one a piece of
 advice was written for.
 
-In hosted mode, the round trip is long enough that a misunderstanding is expensive: you
-find out at the end. Reviewing an agent's pull request is also a genuine skill — it looks
-like reviewing a colleague's work, but the failure modes are different, and confident
-wrongness is more common than sloppiness.
+In hosted mode the round trip is long enough that a misunderstanding is expensive — you
+discover it at the end, having waited for it.
+
+Reviewing an agent's pull request is its own skill, too. It looks like reviewing a
+colleague's work, but the failure modes differ: a tired human writes something sloppy and
+half-knows it, while an agent writes something wrong with immaculate formatting and total
+composure. Read for the second one.
 
 ## Where the numbers live
 

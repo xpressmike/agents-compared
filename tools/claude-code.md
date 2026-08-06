@@ -33,16 +33,19 @@ whatever you switch to, including nothing.
 
 ## What will annoy you
 
-You are in a text interface. There is no file tree and no click-to-open, so if the
-terminal is unfamiliar, that friction lands on top of learning the agent itself.
+You are in a text interface. No file tree, no click-to-open. If the terminal is unfamiliar,
+that friction arrives on top of learning the agent, and the two will feel like one problem
+even though they are two.
 
-An agent that can run commands is an agent that can run the wrong command. The mitigation
-is the same as with a new colleague: work on a branch, keep changes reviewable, and do not
-approve what you have not read.
+An agent that can run commands is, unavoidably, an agent that can run the wrong command.
+The mitigation is the one you would use with a competent new colleague who has had no
+sleep: work on a branch, keep changes small enough to read, and do not approve what you
+have not actually read. "Looks fine" is not reading.
 
 ## Where the numbers live
 
-Models, limits and pricing move faster than this page can. Read them at the source:
+Models, limits and pricing move faster than this page intends to. Read them at the source,
+where keeping them current is at least somebody's job:
 
 - <https://claude.com/product/claude-code>
 - <https://docs.claude.com/en/docs/claude-code/overview>

@@ -4,10 +4,10 @@ Rows are **workflow properties** — things that change how your day goes. Not s
 capabilities that will be equalised by the next release, and not anything with a number in
 it.
 
-A property is only listed here if it is a *durable* consequence of the tool's shape. "Can
-run your test suite" is durable: it follows from living in a terminal. "Handles large
-refactors well" is not — that is a model claim, it changes monthly, and it belongs in
-nobody's table.
+A property earns a row only if it is a *durable* consequence of the tool's shape. "Can run
+your test suite" is durable — it follows from living in a terminal, and no release changes
+that. "Handles large refactors well" is not: that is a model claim, it has the half-life of
+a fruit fly, and it belongs in nobody's table.
 
 | | Claude Code | Codex (CLI) | Codex (hosted) | Gemini CLI | Cursor | Grok / Kimi |
 |---|---|---|---|---|---|---|
@@ -33,13 +33,15 @@ listed separately from tools that ship both.
 does worse work.
 
 **"It can suggest the command"** is the honest answer for an editor-bound agent. It knows
-what should be run. It is not the thing running it and reading the output, and that gap is
-the difference between "the change looks right" and "the change works".
+perfectly well what should be run. It is simply not the thing running it, nor the thing
+reading what came back — which is the whole difference between "the change looks right"
+and "the change works".
 
 ## What is deliberately not here
 
 Context window sizes, prices, model names, benchmark results, star counts, launch dates.
-Every one of them would be wrong within weeks, and a table that is 30% wrong is worse than
-no table, because it looks maintained.
+Each would be wrong within weeks, and a table that is 30% wrong is worse than no table at
+all, because it still looks maintained. Nothing misleads quite like a tidy grid of stale
+numbers.
 
 The numbers live on each vendor's own pages, linked at the bottom of every tool page.

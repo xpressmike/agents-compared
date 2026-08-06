@@ -28,10 +28,12 @@ correction cost on your own real task rather than trusting a leaderboard.
 ## What will annoy you
 
 Documentation and community material are thinner and less consistently in English than for
-the labs with more Western market presence, so setup can take longer than it should.
+labs with more Western market presence, so setup can eat an evening that the equivalent
+elsewhere would not.
 
-As with any provider-agnostic choice, your experience is a product of the client and the
-model together, and it is easy to blame the wrong half.
+And as with any provider-agnostic choice, your experience is the client and the model
+multiplied together — so when something is bad, you get to guess which half did it. It is
+usually the half you did not suspect.
 
 ## Where the numbers live
 

@@ -30,13 +30,14 @@ before you choose.
 
 ## What will annoy you
 
-Reach. Running the test suite, checking out a branch, reading a log, deploying — those
-live in the terminal. An editor-bound agent can suggest the command, but it is not the one
-running it and reading the result, and that gap is where "the change looks right" stops
-short of "the change works".
+Reach. Running the test suite, checking out a branch, reading a log, deploying — all of
+that lives in the terminal. An editor-bound agent will happily suggest the command; it is
+just not the one running it, and not the one reading what came back. That gap is where
+"the change looks right" stops short of "the change works", and the distance between those
+two sentences is where the afternoon goes.
 
-Composition, too: terminal agents chain with everything else in a terminal, because that
-is what a terminal is for.
+Composition, too: terminal agents chain with everything else in a terminal, which is the
+entire reason terminals are still here.
 
 ## Where the numbers live
 

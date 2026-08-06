@@ -18,7 +18,8 @@ not write, finding every place a pattern is used, migrations that touch dozens o
 the same way.
 
 For the ordinary small task — fix this function, add this field, rename this thing — the
-capacity is not the point, because you were never going to use it.
+capacity is beside the point. It is a very large table at a restaurant you are visiting
+alone.
 
 ## What transfers when you leave
 
@@ -35,10 +36,12 @@ agent actually does with your prompt. That understanding transfers to all of the
 
 ## What will annoy you
 
-Large context invites lazy prompting, and lazy prompting is punished at every size.
+Large context invites lazy prompting, and lazy prompting is punished at every size. The
+window does not do the thinking; it only makes the thinking cost more.
 
-Google ships coding assistance under several names across cloud and editor products, and
-working out which page applies to the thing you installed takes longer than it should.
+Google also ships coding assistance under several names across several products, so working
+out which documentation page applies to the thing you actually installed becomes its own
+small research project.
 
 ## Where the numbers live
 

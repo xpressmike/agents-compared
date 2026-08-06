@@ -32,10 +32,11 @@ code, by you.
 
 ## What will annoy you
 
-The experience depends heavily on which client you drive it from, so advice you read may
-not describe your setup at all.
+The experience depends heavily on which client you drive it from, so advice you find
+online may be describing something that shares only a name with what you installed.
 
-Availability and terms differ by region and change; check before you build a habit.
+Availability and terms differ by region and move around; check before you build a habit on
+top of them.
 
 ## Where the numbers live
 
