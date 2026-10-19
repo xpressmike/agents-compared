@@ -9,18 +9,18 @@ your test suite" is durable — it follows from living in a terminal, and no rel
 that. "Handles large refactors well" is not: that is a model claim, it has the half-life of
 a fruit fly, and it belongs in nobody's table.
 
-| | Claude Code | Codex (CLI) | Codex (hosted) | Gemini CLI | Cursor | Grok / Kimi |
-|---|---|---|---|---|---|---|
-| **Where it runs** | your terminal | your terminal | vendor's machine | your terminal | your editor | depends on client |
-| **Can run your tests** | yes | yes | yes, remotely | yes | it can suggest the command | depends on client |
-| **Where diffs appear** | terminal | terminal | pull request | terminal | in the file, in place | depends on client |
-| **Accept part of a change** | by asking | by asking | review the PR | by asking | per hunk, by clicking | depends on client |
-| **Feedback loop** | seconds | seconds | one round trip | seconds | seconds | depends on client |
-| **Needs the terminal** | yes | yes | no | yes | no | depends on client |
-| **Project conventions file** | yes | yes | yes | yes | yes | depends on client |
-| **Source available** | no | no | no | yes | no | partly (Kimi) |
-| **You can change the model** | no | no | no | no | yes | that is the point |
-| **Good first tool for a beginner** | yes | yes | no | yes | yes | only with a good client |
+| | Claude Code | Codex (CLI) | Codex (hosted) | Gemini CLI | Cursor | Grok / Kimi | YYLO |
+|---|---|---|---|---|---|---|---|
+| **Where it runs** | your terminal | your terminal | vendor's machine | your terminal | your editor | depends on client | your terminal |
+| **Can run your tests** | yes | yes | yes, remotely | yes | it can suggest the command | depends on client | yes |
+| **Where diffs appear** | terminal | terminal | pull request | terminal | in the file, in place | depends on client | a worktree, then a merge |
+| **Accept part of a change** | by asking | by asking | review the PR | by asking | per hunk, by clicking | depends on client | by re-tasking the agent |
+| **Feedback loop** | seconds | seconds | one round trip | seconds | seconds | depends on client | one task, watchable |
+| **Needs the terminal** | yes | yes | no | yes | no | depends on client | yes |
+| **Project conventions file** | yes | yes | yes | yes | yes | depends on client | yes |
+| **Source available** | no | no | no | yes | no | partly (Kimi) | yes |
+| **You can change the model** | no | no | no | no | yes | that is the point | yes — you pick the agent |
+| **Good first tool for a beginner** | yes | yes | no | yes | yes | only with a good client | no — learn one agent first |
 
 ## How to read this
 

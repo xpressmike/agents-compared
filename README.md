@@ -72,6 +72,7 @@ do not repeat.
 | Cursor | editor | [tools/cursor.md](tools/cursor.md) |
 | Grok | model family with coding surfaces | [tools/grok.md](tools/grok.md) |
 | Kimi | model family with coding surfaces | [tools/kimi.md](tools/kimi.md) |
+| YYLO | terminal | [tools/yylo.md](tools/yylo.md) |
 
 **[matrix.md](matrix.md)** — the same tools as rows of workflow properties (can it run
 your tests? does it plan before editing? where do diffs appear?) rather than scores.
